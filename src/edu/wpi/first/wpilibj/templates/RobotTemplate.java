@@ -48,7 +48,7 @@ public class RobotTemplate extends SimpleRobot {
         Timer.delay(0.01);
     }
     }
-    
+    //test
     /**
      * This function is called once each time the robot enters test mode.
      */
