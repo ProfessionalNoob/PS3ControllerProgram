@@ -25,7 +25,10 @@ public class RobotTemplate extends SimpleRobot {
      * This function is called once each time the robot enters autonomous mode.
      */
 
-
+double throttle;
+double turnValue;  //Declaring variables. 
+double leftMtr;
+double rightMtr;
 
 throttle = joystick.getY();
 turnValue = joystick.getX();
