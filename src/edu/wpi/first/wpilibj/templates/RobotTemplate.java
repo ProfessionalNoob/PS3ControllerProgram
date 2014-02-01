@@ -25,32 +25,13 @@ public class RobotTemplate extends SimpleRobot {
      * This function is called once each time the robot enters autonomous mode.
      */
 
-double throttle;
-double turnValue;
-
-double leftMtr;
-double rightMtr;
-
-throttle = joystick.getY();
-turnValue = joystick.getX();
-
-leftMtr = throttle + turnValue;
-rightMtr = throttle - turnValue;
-
-public double getArcadeLeftMotor() {
-        return leftMtr + skim(rightMtr);
-    }
-
-    public double getArcadeRightMotor() {
-        return rightMtr + skim(leftMtr);            
-    }
-
-public double skim(double v) {
-    if (v > 1.0) {
-        return -((v - 1.0) * RobotMap.TURNING_GAIN);
-    } else if (v < -1.0) {
-        return -((v + 1.0) * RobotMap.TURNING_GAIN);
-    } return 0; 
+    Robotdrive myDrive;
+    Joystick driveStick;
+    public void robotInit()
+    {
+        myDrive = new RobotDrive(1, 2, 3, 4);
+        left = new Joystick(1);
+        right = new Joystick(2);
     }
 
     public void autonomous() {
@@ -61,7 +42,11 @@ public double skim(double v) {
      * This function is called once each time the robot enters operator control.
      */
     public void operatorControl() {
-
+    while (isOperatorControl() && isEnabled())
+    {
+        myDrive.arcadeDrive(left);
+        Timer.delay(0.01);
+    }
     }
     
     /**
